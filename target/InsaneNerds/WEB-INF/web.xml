@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+     <display-name>WebApp</display-name>
+   
+   <servlet>  
+     <servlet-name>Login_Bridge</servlet-name>  
+     <servlet-class>com.ebooks.login.main.Login_Bridge</servlet-class>  
+   </servlet>
+  
+  	 <servlet-mapping>  
+     <servlet-name>Login_Bridge</servlet-name>  
+     <url-pattern>/Login_Bridge/*</url-pattern>  
+   </servlet-mapping> 
+  
+   
+    <servlet>  
+     <servlet-name>RegisterPage</servlet-name>  
+     <servlet-class>com.ebooks.login.Google.RegisterPage</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>RegisterPage</servlet-name>  
+     <url-pattern>/RegisterPage/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
+   
+   
+    <servlet>  
+     <servlet-name>FacebookPage</servlet-name>  
+     <servlet-class>com.ebooks.login.Facebook.FacebookPage</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>FacebookPage</servlet-name>  
+     <url-pattern>/FacebookPage/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <servlet>  
+     <servlet-name>Login_info</servlet-name>  
+     <servlet-class>com.ebooks.database.data.Login_info</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>Login_info</servlet-name>  
+     <url-pattern>/Login_info/*</url-pattern>  
+   </servlet-mapping> 
+   
+  
+    
+   <welcome-file-list>  
+     <welcome-file>index.jsp</welcome-file>  
+   </welcome-file-list>
+  
+</web-app>
