@@ -1,3 +1,4 @@
+
 package com.ebooks.login.Normal;
 
 import java.io.IOException;
@@ -39,7 +40,8 @@ public class Normal_login extends HttpServlet {
 		session.setAttribute("emailid", request.getParameter("emailid"));
 		session.setAttribute("Name", request.getParameter("Name"));
 		session.setAttribute("password", request.getParameter("password"));
-		response.sendRedirect(request.getContextPath() + "/Login_info");
+		response.sendRedirect(request.getContextPath() + "/confirmation_mail_send");
+		
 
 	}
 

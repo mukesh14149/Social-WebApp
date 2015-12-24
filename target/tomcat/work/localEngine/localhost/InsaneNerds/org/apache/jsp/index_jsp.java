@@ -61,12 +61,20 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 	HttpSession sess=request.getSession();
 	String Name=(String) sess.getAttribute("Name");
+	String confirm=(String) sess.getAttribute("confirm");
     
 
       out.write('\n');
-if(Name==null){ 
+if(Name==null || confirm!=null) { if(Name==null){
       out.write("\n");
       out.write("<h2>Hello World!</h2>\n");
+}else {
+      out.write("\n");
+      out.write("<h2>Hello ");
+      out.print(Name );
+      out.write(" you need to confirm your mail and sign in again to get access</h2>\n");
+}sess.invalidate(); 
+      out.write("\n");
       out.write("<form action=\"/InsaneNerds/Signin_normal\" method=\"post\">  \n");
       out.write("\t\t\tEmail:<input type=\"text\" name=\"emailid\"><br>  \n");
       out.write("\t\t    Password:<input type=\"password\" name=\"password\"><br>  \n");

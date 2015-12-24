@@ -71,16 +71,20 @@ public class Signin_normal extends HttpServlet {
         {
         	Login e=(Login)it.next();
 	        String database_pass =e.getPassword();
+	        Integer database_active=e.getActive();
 	        
-	        if(password.equals(database_pass) && database_pass!=null){
+	        if(password.equals(database_pass) && database_pass!=null &&database_active!=0){
 	        	sess.setAttribute("emailid", e.getEmailid());
 	    		sess.setAttribute("Name", e.getName());
 	        	System.out.println("yuyoooo");
 	    		response.sendRedirect(request.getContextPath() + "/index.jsp");
-
+	    		return;
 	        }
         }   
         session.close();
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+    
+        return;
 
 	}
 

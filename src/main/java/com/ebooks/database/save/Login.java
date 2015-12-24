@@ -1,5 +1,7 @@
 package com.ebooks.database.save;  
   
+
+
 import javax.persistence.Entity;  
 import javax.persistence.GeneratedValue;  
 import javax.persistence.GenerationType;
@@ -15,18 +17,23 @@ public class Login {
     private Integer id=0;   
     private String emailid; 
     private String name;
-    private Integer Amount;  
+    private String expirydate;
     private String password;
+    private String hash;
+    private Integer active;
+    private Integer Amount;  
     
     public Login() {};  
       
-    public Login(Integer id, String emailid, String Name, Integer amount, String password) {  
+    public Login(Integer id, String emailid, String Name, Integer amount,String hash, String password,String expirydate,Integer active) {  
         this.id = id;  
         this.emailid = emailid;
         this.name=Name;
         this.Amount = amount;  
 		this.password=password;
-
+		this.expirydate=expirydate;
+		this.hash=hash;
+		this.active=active;
     }
 
     public Integer getId() {
@@ -74,9 +81,29 @@ public class Login {
 		return password;
 	}
 	
+	public void setHash(String hash){
+		this.hash=hash;
+	}
 	
+	public String getHash(){
+		return hash;
+	}
 	
+	public void setExpirydate(String expirydate){
+		this.expirydate=expirydate;
+	}
 	
+	public String getExpairydate(){
+		return expirydate;
+	}
+	
+	public void setActive(Integer active){
+		this.active=active;
+	}
+	
+	public Integer getActive(){
+		return active;
+	}
 		 
 		
        

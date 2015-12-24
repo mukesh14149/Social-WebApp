@@ -49,6 +49,79 @@
    
    
    
+   <servlet>  
+     <servlet-name>Normal_login</servlet-name>  
+     <servlet-class>com.ebooks.login.Normal.Normal_login</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>Normal_login</servlet-name>  
+     <url-pattern>/Normal_login/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
+   
+    <servlet>  
+     <servlet-name>confirmation_mail_send</servlet-name>  
+     <servlet-class>com.ebooks.login.Normal.confirmation_mail_send</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>confirmation_mail_send</servlet-name>  
+     <url-pattern>/confirmation_mail_send/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
+   <servlet>  
+     <servlet-name>confirm_mail_save</servlet-name>  
+     <servlet-class>com.ebooks.login.Normal.confirm_mail_save</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>confirm_mail_save</servlet-name>  
+     <url-pattern>/confirm_mail_save/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
+   
+   <servlet>  
+     <servlet-name>checkServlet</servlet-name>  
+     <servlet-class>com.ebooks.login.Normal.checkServlet</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>checkServlet</servlet-name>  
+     <url-pattern>/checkServlet/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
+   
+   <servlet>  
+     <servlet-name>Signin_normal</servlet-name>  
+     <servlet-class>com.ebooks.login.Normal.Signin_normal</servlet-class>  
+   </servlet>
+    
+     
+  
+   
+   <servlet-mapping>  
+     <servlet-name>Signin_normal</servlet-name>  
+     <url-pattern>/Signin_normal/*</url-pattern>  
+   </servlet-mapping> 
+   
+   
    
    
    

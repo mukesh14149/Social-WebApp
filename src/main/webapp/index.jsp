@@ -9,10 +9,14 @@ import="org.apache.tomcat.jni.File"
 <%
 	HttpSession sess=request.getSession();
 	String Name=(String) sess.getAttribute("Name");
+	String confirm=(String) sess.getAttribute("confirm");
     
 %>
-<%if(Name==null){ %>
+<%if(Name==null || confirm!=null) { if(Name==null){%>
 <h2>Hello World!</h2>
+<%}else {%>
+<h2>Hello <%=Name %> you need to confirm your mail and sign in again to get access</h2>
+<%}sess.invalidate(); %>
 <form action="/InsaneNerds/Signin_normal" method="post">  
 			Email:<input type="text" name="emailid"><br>  
 		    Password:<input type="password" name="password"><br>  

@@ -1,3 +1,5 @@
+//Secure the amount for sign in facebook and google
+
 package com.ebooks.database.data;
 
 import java.io.IOException;
@@ -43,7 +45,8 @@ public class Login_info extends HttpServlet {
 		String Name=(String) hsession.getAttribute("Name");
 		String emailid=(String) hsession.getAttribute("emailid");
 		String password=(String) hsession.getAttribute("password");
-		
+		String hash=(String) hsession.getAttribute("hash");
+		String expirydate=(String) hsession.getAttribute("expirydate");
 		
 		Configuration cfg=new Configuration();  
         cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file  
@@ -62,6 +65,14 @@ public class Login_info extends HttpServlet {
         datavalue.setName(Name);  
         datavalue.setAmount(0);
         datavalue.setPassword(password);
+        if(expirydate==null){
+        	expirydate="24/12/15 9:52 PM";
+        }
+        datavalue.setExpirydate(expirydate);
+        datavalue.setHash(hash);
+        datavalue.setActive(0);
+        
+        
         
         session.save(datavalue);//persisting the object  
         t.commit();//transaction is committed  
@@ -71,9 +82,11 @@ public class Login_info extends HttpServlet {
 
         session.close();
 	
-	
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
-
+        if(hash!=null){
+        	hsession.setAttribute("confirm", "No");
+        }	
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        	
 	}
 
 	/**
