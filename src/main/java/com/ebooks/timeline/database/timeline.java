@@ -15,6 +15,7 @@ public class timeline {
 	private String Post;
 	private String emailid;
 	private byte[] image;
+	private Integer likes;
 	
 	public void setId(Integer id){
 		this.id=id;
@@ -22,6 +23,13 @@ public class timeline {
 	
 	public Integer getId(){
 		return id;
+	}
+	public void setLikes(Integer likes){
+		this.likes=id;
+	}
+	
+	public Integer getLikes(){
+		return likes;
 	}
 	
 	public void setPost(String post){

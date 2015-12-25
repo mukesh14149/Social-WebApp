@@ -151,6 +151,18 @@
    		<url-pattern>/Store_Timeline_Data/*</url-pattern>
    	</servlet-mapping>
   
+  
+  	<servlet>
+   			<servlet-name>likes_dislikes</servlet-name>
+   			<servlet-class>com.ebooks.timeline.likes.likes_dislikes</servlet-class>
+   	</servlet>
+   	
+   	<servlet-mapping>
+   		<servlet-name>likes_dislikes</servlet-name>
+   		<url-pattern>/likes_dislikes/*</url-pattern>
+   	</servlet-mapping>
+  
+  
     
    <welcome-file-list>  
      <welcome-file>index.jsp</welcome-file>  

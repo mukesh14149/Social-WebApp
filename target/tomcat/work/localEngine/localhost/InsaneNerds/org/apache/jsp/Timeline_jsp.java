@@ -6,6 +6,7 @@ import javax.servlet.jsp.*;
 import java.io.*;
 import java.util.*;
 import com.ebooks.timeline.database.Get_timeline_post;
+import com.ebooks.timeline.likes.fetch_likes;
 import javax.servlet.*;
 import org.apache.tomcat.jni.File;
 import java.awt.image.BufferedImage;
@@ -69,9 +70,18 @@ public final class Timeline_jsp extends org.apache.jasper.runtime.HttpJspBase
 	System.out.println("Request send");	
 		HttpSession sess=request.getSession();
 		String emailid=(String)sess.getAttribute("emailid");
+		Get_timeline_post ob_time=new Get_timeline_post();
+		fetch_likes ob_likes=new fetch_likes(emailid);
 		HashMap<String, byte[]> post=null;
+		HashMap<String,Integer> hashid=null;
+		HashSet<Integer> hash=null;
+		HashMap<String,Integer> likes=null;
 		try{
-			post=new Get_timeline_post().getPost(); }catch(Exception e){}
+			post=ob_time.post;
+			hashid=ob_time.hashid;
+			likes=ob_time.likes;
+			hash=ob_likes.hash;
+		}catch(Exception e){}
 		
 		
       out.write('\n');
@@ -106,8 +116,9 @@ if(emailid!=null){
       out.write('\n');
       out.write('	');
 for(String name:post.keySet()){ String key =name.toString();
+	
 		String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(post.get(key));
-		System.out.println("yes1");
+		System.out.println(hashid.get(key));
 		
 		
       out.write(" \n");
@@ -117,6 +128,24 @@ for(String name:post.keySet()){ String key =name.toString();
       out.write("\t\t<img style=\"width:200px; height:200px;\" src=\"data:image/jpg;base64, ");
       out.print(b64);
       out.write("\" alt=\"******\" />\n");
+      out.write("\t\t");
+if(hash.contains(hashid.get(key))==false) {
+      out.write("\n");
+      out.write("\t\t<form action=\"/InsaneNerds/likes_dislikes\" method=\"post\"><button name=\"like\" value=");
+      out.print(hashid.get(key));
+      out.write(" type=\"submit\"  >Like</button></form>\n");
+      out.write("\t\t");
+} else{
+      out.write("\n");
+      out.write("\t\t<form action=\"/InsaneNerds/likes_dislikes\" method=\"post\"><button name=\"unlike\" value=");
+      out.print(hashid.get(key));
+      out.write(" type=\"submit\">Unlike</button></form>\n");
+      out.write("\t");
+ }
+      out.write("\n");
+      out.write("\t\t<h5>");
+      out.print(likes.get(key) );
+      out.write("</h5>\n");
       out.write("\t");
  } 
       out.write("\n");

@@ -10,6 +10,7 @@
 <%@ page import="java.io.*"
 import="java.util.*"
 import="com.ebooks.timeline.database.Get_timeline_post"
+import="com.ebooks.timeline.likes.fetch_likes"
 import="javax.servlet.*"
 import="org.apache.tomcat.jni.File"
 import="java.awt.image.BufferedImage"
@@ -18,9 +19,18 @@ import="java.awt.image.BufferedImage"
 	<%	System.out.println("Request send");	
 		HttpSession sess=request.getSession();
 		String emailid=(String)sess.getAttribute("emailid");
+		Get_timeline_post ob_time=new Get_timeline_post();
+		fetch_likes ob_likes=new fetch_likes(emailid);
 		HashMap<String, byte[]> post=null;
+		HashMap<String,Integer> hashid=null;
+		HashSet<Integer> hash=null;
+		HashMap<String,Integer> likes=null;
 		try{
-			post=new Get_timeline_post().getPost(); }catch(Exception e){}
+			post=ob_time.post;
+			hashid=ob_time.hashid;
+			likes=ob_time.likes;
+			hash=ob_likes.hash;
+		}catch(Exception e){}
 		
 		%>
 	<%if(emailid!=null){ %>
@@ -49,12 +59,19 @@ import="java.awt.image.BufferedImage"
 	
 	<%} %>
 	<%for(String name:post.keySet()){ String key =name.toString();
+	
 		String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(post.get(key));
-		System.out.println("yes1");
+		System.out.println(hashid.get(key));
 		
 		%> 
 		<h1><%=key %></h1>
 		<img style="width:200px; height:200px;" src="data:image/jpg;base64, <%=b64%>" alt="******" />
+		<%if(hash.contains(hashid.get(key))==false) {%>
+		<form action="/InsaneNerds/likes_dislikes" method="post"><button name="like" value=<%=hashid.get(key)%> type="submit"  >Like</button></form>
+		<%} else{%>
+		<form action="/InsaneNerds/likes_dislikes" method="post"><button name="unlike" value=<%=hashid.get(key)%> type="submit">Unlike</button></form>
+	<% }%>
+		<h5><%=likes.get(key) %></h5>
 	<% } %>
 		
 </body>

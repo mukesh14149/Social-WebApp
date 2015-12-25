@@ -17,7 +17,13 @@ import javax.imageio.ImageIO;
 import javax.servlet.*;
 
 public class Get_timeline_post {
-	public  HashMap<String, byte[]> getPost() throws IOException{
+	public HashMap<String, byte[]> post=new HashMap<String, byte[]>();
+	public HashMap<String,Integer> hashid=new HashMap<String,Integer>();
+	public HashMap<String,Integer> likes=new HashMap<String,Integer>();
+
+	
+	
+	public   Get_timeline_post() throws IOException{
 		
 		System.out.println("hello");
 		Configuration cfg=new Configuration();  
@@ -27,7 +33,7 @@ public class Get_timeline_post {
         Transaction t=session.beginTransaction();
         
         
-		HashMap<String, byte[]> post=new HashMap<String, byte[]>();
+		
 		Query q = session.createQuery("from timeline");
 		Iterator it=q.iterate();
 		while(it.hasNext()){
@@ -36,12 +42,14 @@ public class Get_timeline_post {
 	        timeline.getEmailid();
 	        BufferedImage img = ImageIO.read(new ByteArrayInputStream(timeline.getImage()));
 	        post.put(timeline.getPost(), timeline.getImage());
+	        hashid.put(timeline.getPost(),timeline.getId());
+	        likes.put(timeline.getPost(),timeline.getLikes());
 	        System.out.println(img+"jelll");
 		}
 		
 		
 		session.close();
-		return post;
+		
 		
 	}
 	
