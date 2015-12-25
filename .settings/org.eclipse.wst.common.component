@@ -9,6 +9,9 @@
         <dependent-module archiveName="restfb-1.17.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/mukesh/Documents/Developers_stuff/Java_development/InsaneNerds/src/main/webapp/WEB-INF/lib/restfb-1.17.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="javax.servlet-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/mukesh/Documents/Developers_stuff/Java_development/InsaneNerds/src/main/webapp/WEB-INF/lib/javax.servlet-3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="InsaneNerds"/>
         <property name="java-output-path" value="/InsaneNerds/target/classes"/>
     </wb-module>

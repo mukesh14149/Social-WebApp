@@ -13,6 +13,6 @@
             <property name="connection.pool_size">1</property>  
               
             <mapping class="com.ebooks.database.save.Login"/>  
-      
+      		<mapping class="com.ebooks.timeline.database.timeline"/>
         </session-factory>  
     </hibernate-configuration>  

@@ -8,7 +8,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.UUID;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.ebooks.timeline.database.timeline;
 
 public class check {
 	
@@ -19,17 +29,26 @@ public class check {
 	 */
 	public static void main(String[] args) throws UnsupportedEncodingException, ParseException {
 		// TODO Auto-generated method stub
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy hh:mm a");
-		Calendar cal = Calendar.getInstance();
-        cal.setTime(new Timestamp(cal.getTime().getTime()));
-        cal.add(Calendar.MINUTE, 60*24);
-        
-        Date date=format.parse("24/12/15 8:06 PM");
-        Date date1 = new Date();
-        System.out.println(format.format(date));
-        System.out.println(format.format(date1));
-      
-        System.out.println(format.format(date).compareTo(format.format(date1)));
+		
+			Configuration cfg=new Configuration();  
+	        cfg.configure("hibernate.cfg.xml");
+	        SessionFactory factory=cfg.buildSessionFactory();  
+	        Session session=factory.openSession();
+	        Transaction t=session.beginTransaction();
+	        
+			HashSet<String> post=new HashSet<String>();
+			
+			Query q = session.createQuery("from Login");
+			Iterator it=q.iterate();
+			while(it.hasNext()){
+				timeline time=(timeline) it.next();
+				post.add(time.getPost());	
+				System.out.println(time.getPost());
+			}
+			
+			session.close();
+			
+		
         
 	}
 

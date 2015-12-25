@@ -140,7 +140,16 @@
      <servlet-name>Login_info</servlet-name>  
      <url-pattern>/Login_info/*</url-pattern>  
    </servlet-mapping> 
-   
+   	
+   	<servlet>
+   			<servlet-name>Store_Timeline_Data</servlet-name>
+   			<servlet-class>com.ebooks.timeline.database.Store_Timeline_Data</servlet-class>
+   	</servlet>
+   	
+   	<servlet-mapping>
+   		<servlet-name>Store_Timeline_Data</servlet-name>
+   		<url-pattern>/Store_Timeline_Data/*</url-pattern>
+   	</servlet-mapping>
   
     
    <welcome-file-list>  
