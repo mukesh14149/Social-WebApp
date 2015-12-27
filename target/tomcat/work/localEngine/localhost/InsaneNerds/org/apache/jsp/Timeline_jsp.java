@@ -76,6 +76,7 @@ public final class Timeline_jsp extends org.apache.jasper.runtime.HttpJspBase
 		HashMap<String,Integer> hashid=null;
 		HashSet<Integer> hash=null;
 		HashMap<String,Integer> likes=null;
+		HashMap<String,Integer> comments=(HashMap<String,Integer>) sess.getAttribute("comments");
 		try{
 			post=ob_time.post;
 			hashid=ob_time.hashid;
@@ -128,8 +129,9 @@ for(String name:post.keySet()){ String key =name.toString();
       out.write("\t\t<img style=\"width:200px; height:200px;\" src=\"data:image/jpg;base64, ");
       out.print(b64);
       out.write("\" alt=\"******\" />\n");
+      out.write("\t\t\n");
       out.write("\t\t");
-if(hash.contains(hashid.get(key))==false) {
+if(emailid!=null) {if(hash.contains(hashid.get(key))==false) {
       out.write("\n");
       out.write("\t\t<form action=\"/InsaneNerds/likes_dislikes\" method=\"post\"><button name=\"like\" value=");
       out.print(hashid.get(key));
@@ -141,13 +143,44 @@ if(hash.contains(hashid.get(key))==false) {
       out.print(hashid.get(key));
       out.write(" type=\"submit\">Unlike</button></form>\n");
       out.write("\t");
- }
+ }}
       out.write("\n");
+      out.write("\t\n");
       out.write("\t\t<h5>");
       out.print(likes.get(key) );
       out.write("</h5>\n");
-      out.write("\t");
- } 
+      out.write("\t\t\n");
+      out.write("\t\t<form action=\"/InsaneNerds/comment_set\" method=\"post\">\n");
+      out.write("\t\t");
+if(emailid!=null){ 
+      out.write("\n");
+      out.write("\t\t<input type=\"text\" name=\"comment\"  size=\"50\"  \n");
+      out.write("                     />\n");
+      out.write("               ");
+} 
+      out.write("     \n");
+      out.write("                <button  name=\"commentid\" value=");
+      out.print(hashid.get(key));
+      out.write(" type=\"submit\">comment</button></form>\n");
+      out.write("\t\t\t\t");
+try{if(comments.containsValue(hashid.get(key))){ 
+					System.out.println("yes i am in");
+					for(String comm:comments.keySet()){ 
+					if(hashid.get(key).equals(comments.get(comm))){					System.out.println("yes i am in too");
+
+				
+      out.write("\n");
+      out.write("\t\t\t\t\n");
+      out.write("\t\t\t\t\t<p>");
+      out.print(comm);
+      out.write("</p>\n");
+      out.write("\t\t\t\t\t\n");
+      out.write("\t\t\t\t");
+}} 
+      out.write('	');
+      out.write('\n');
+      out.write('	');
+ }}catch(Exception e){					System.out.println("yes i am in chui");} }
       out.write("\n");
       out.write("\t\t\n");
       out.write("</body>\n");

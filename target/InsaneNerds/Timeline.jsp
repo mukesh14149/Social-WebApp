@@ -24,9 +24,12 @@ import="java.awt.image.BufferedImage"
 		HashMap<String, byte[]> post=null;
 		HashMap<String,Integer> hashid=null;
 		HashSet<Integer> hash=null;
+		HashMap<String,Integer> likes=null;
+		HashMap<Integer,String> comments=(HashMap<Integer, String>) sess.getAttribute("comments");
 		try{
 			post=ob_time.post;
 			hashid=ob_time.hashid;
+			likes=ob_time.likes;
 			hash=ob_likes.hash;
 		}catch(Exception e){}
 		
@@ -64,11 +67,32 @@ import="java.awt.image.BufferedImage"
 		%> 
 		<h1><%=key %></h1>
 		<img style="width:200px; height:200px;" src="data:image/jpg;base64, <%=b64%>" alt="******" />
-		<%if(hash.contains(hashid.get(key))==false) {%>
-		<a><button name="like" value=<%=hashid.get(key)%>  >Like</button></a>
+		
+		<%if(emailid!=null) {if(hash.contains(hashid.get(key))==false) {%>
+		<form action="/InsaneNerds/likes_dislikes" method="post"><button name="like" value=<%=hashid.get(key)%> type="submit"  >Like</button></form>
 		<%} else{%>
-		<a><button name="unlike" value=<%=hashid.get(key)%> >Unlike</button></a>
-	<% }} %>
+		<form action="/InsaneNerds/likes_dislikes" method="post"><button name="unlike" value=<%=hashid.get(key)%> type="submit">Unlike</button></form>
+	<% }}%>
+	
+		<h5><%=likes.get(key) %></h5>
+		
+		<form action="/InsaneNerds/comment_set" method="post">
+		<%if(emailid!=null){ %>
+		<input type="text" name="comment"  size="50"  
+                     />
+               <%} %>     
+                <button  name="commentid" value=<%=hashid.get(key)%> type="submit">comment</button></form>
+				<%try{if(comments.containsKey(hashid.get(key))){ 
+					System.out.println("yes i am in");
+					for(Integer comm:comments.keySet()){ Integer id =comm;
+					if(hashid.get(key)==id){					System.out.println("yes i am in too");
+
+				%>
+				
+					<p><%=comments.containsKey("Hello world") %>Hello</p>
+					
+				<%}} %>	
+	<% }}catch(Exception e){					System.out.println("yes i am in chui");} }%>
 		
 </body>
 </html>

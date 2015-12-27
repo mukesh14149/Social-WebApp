@@ -35,5 +35,7 @@ public class fetch_likes {
 	        hash.add(likes.gethash());
 	        
 		}
+        session.close();
+
 	}
 }

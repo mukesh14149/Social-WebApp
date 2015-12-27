@@ -15,5 +15,6 @@
             <mapping class="com.ebooks.database.save.Login"/>  
       		<mapping class="com.ebooks.timeline.database.timeline"/>
       		<mapping class="com.ebooks.timeline.likes.likes"/>
+      		<mapping class="com.ebooks.timeline.comment.comment"/>
         </session-factory>  
     </hibernate-configuration>  

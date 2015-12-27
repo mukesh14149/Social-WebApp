@@ -161,6 +161,26 @@
    		<servlet-name>likes_dislikes</servlet-name>
    		<url-pattern>/likes_dislikes/*</url-pattern>
    	</servlet-mapping>
+   	
+   	
+   	<servlet>
+   			<servlet-name>comment_set</servlet-name>
+   			<servlet-class>com.ebooks.timeline.comment.comment_set</servlet-class>
+   	</servlet>
+   	
+   	<servlet-mapping>
+   		<servlet-name>comment_set</servlet-name>
+   		<url-pattern>/comment_set/*</url-pattern>
+   	</servlet-mapping>
+  	<servlet>
+   			<servlet-name>comment_get</servlet-name>
+   			<servlet-class>com.ebooks.timeline.comment.comment_get</servlet-class>
+   	</servlet>
+   	
+   	<servlet-mapping>
+   		<servlet-name>comment_get</servlet-name>
+   		<url-pattern>/comment_get/*</url-pattern>
+   	</servlet-mapping>
   
   
     
