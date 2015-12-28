@@ -1,5 +1,5 @@
 #surefire
-#Sun Dec 27 17:05:31 IST 2015
+#Tue Dec 29 00:15:06 IST 2015
 dirscanner.0.params=/home/mukesh/Documents/Developers_stuff/Java_development/InsaneNerds/target/test-classes|[**/Test*.java, **/*Test.java, **/*TestCase.java]|[**/*$*]
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=/home/mukesh/Documents/Developers_stuff/Java_development/InsaneNerds/src/test/java

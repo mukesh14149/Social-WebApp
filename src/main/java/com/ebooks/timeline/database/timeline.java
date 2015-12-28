@@ -15,7 +15,7 @@ public class timeline {
 	private String Post;
 	private String emailid;
 	private byte[] image;
-	private Integer likes;
+	private Integer likes=0;
 	
 	public void setId(Integer id){
 		this.id=id;

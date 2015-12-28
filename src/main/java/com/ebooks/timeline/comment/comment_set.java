@@ -45,7 +45,7 @@ public class comment_set extends HttpServlet {
 		String hash=request.getParameter("commentid");
 		String comment=request.getParameter("comment");
 		sess.setAttribute("hash", hash);
-		if(emailid!=null){
+		if(emailid!=null && comment!=null){
 		if(comment.isEmpty()==false){
 			System.out.println("main commetn"+comment);
 			Configuration cfg=new Configuration();  

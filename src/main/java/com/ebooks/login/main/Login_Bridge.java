@@ -32,16 +32,16 @@ public class Login_Bridge extends HttpServlet {
 	
 		System.out.println("hello1");
 		PrintWriter out=response.getWriter();
-		if(request.getParameter("Login").toString().equals("Go to Google")){
+		if(request.getParameter("Login").toString().equals("Sign in with Google")){
 			out.print("<a href=\"https://accounts.google.com/o/oauth2/auth?scope=email%20profile&response_type=code&state=%2Fprofile&redirect_uri=http://localhost:8080/InsaneNerds/RegisterPage&client_id=253725670211-pkmtjrnt24d38jsj903i3kgapas93eqo.apps.googleusercontent.com\">Signin</a>");
 			response.sendRedirect("https://accounts.google.com/o/oauth2/auth?scope=email%20profile&response_type=code&state=%2Fprofile&redirect_uri=http://localhost:8080/InsaneNerds/RegisterPage&client_id=253725670211-pkmtjrnt24d38jsj903i3kgapas93eqo.apps.googleusercontent.com");
 		}
-		if(request.getParameter("Login").toString().equals("Go to Facebook")){
+		if(request.getParameter("Login").toString().equals("Sign in with Facebook")){
 			System.out.println("helloworld");
 			response.sendRedirect("https://facebook.com/dialog/oauth?client_id=758937600918147&scope=email,user_about_me,&redirect_uri=http://localhost:8080/InsaneNerds/FacebookPage");
 
 		}
-		if(request.getParameter("Login").toString().equals("Go to login")){
+		if(request.getParameter("Login").toString().equals("Sign up")){
 			response.sendRedirect("http://localhost:8080/InsaneNerds/Site_login.jsp");
 		}
 		
