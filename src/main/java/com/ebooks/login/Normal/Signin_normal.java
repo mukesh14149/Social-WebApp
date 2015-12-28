@@ -1,3 +1,4 @@
+//Logic:- when User Sign in with his/her emailid and password so in this we can verify their data with table login data to get access them to site.
 package com.ebooks.login.Normal;
 
 
@@ -48,21 +49,20 @@ public class Signin_normal extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession sess=request.getSession();
+		//Get parameters.
 		String emailid=request.getParameter("emailid");
 		String password=request.getParameter("password");
 		
 		Configuration cfg=new Configuration();  
-        cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file  
-          
+        cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file   
         //creating seession factory object  
-        SessionFactory factory=cfg.buildSessionFactory();  
-          
+        SessionFactory factory=cfg.buildSessionFactory();   
         //creating session object  
-        Session session=factory.openSession();  
-          
+        Session session=factory.openSession();    
         //creating transaction object  
         Transaction t=session.beginTransaction();  
      
+        //Check data with Table data and get access them.
         Query q = session.createQuery("from Login where emailid = :code ");
         q.setParameter("code", emailid);
         
@@ -74,6 +74,7 @@ public class Signin_normal extends HttpServlet {
 	        Integer database_active=e.getActive();
 	        
 	        if(password.equals(database_pass) && database_pass!=null &&database_active!=0){
+	        	//Set this attribute when they verify.
 	        	sess.setAttribute("emailid", e.getEmailid());
 	    		sess.setAttribute("Name", e.getName());
 	        	System.out.println("yuyoooo");

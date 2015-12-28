@@ -1,6 +1,6 @@
 package com.ebooks.database.save;  
   
-
+//Login object can save data in this format.
 
 import javax.persistence.Entity;  
 import javax.persistence.GeneratedValue;  

@@ -1,3 +1,6 @@
+//Logic:- when user confirm his/her email by a unique URL then this class open
+//This class is used for checking his/her URL expiry date.
+
 package com.ebooks.login.Normal;
 
 import java.io.IOException;
@@ -43,20 +46,23 @@ public class confirm_mail_save extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession sess=request.getSession();
+		
+		//Get parameters from their unique URL.
 		String emailid=request.getParameter("emailid");
 		String hash=request.getParameter("token");
+		
+		//Save data to table.
 		Configuration cfg=new Configuration();  
         cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file  
-    
         //creating seession factory object  
-        SessionFactory factory=cfg.buildSessionFactory();  
-          
+        SessionFactory factory=cfg.buildSessionFactory();      
         //creating session object  
         Session session=factory.openSession();  
-          
         //creating transaction object  
-        Transaction t=session.beginTransaction();  
-     
+        Transaction t=session.beginTransaction();
+        
+        
+        //Fetch data from Table.
         Query q = session.createQuery("from Login where emailid = :code ");
         q.setParameter("code", emailid);
         
@@ -80,8 +86,9 @@ public class confirm_mail_save extends HttpServlet {
 	      
 	        System.out.println(format.format(date).compareTo(format.format(date1)));
 	        
-	        int Expiry=format.format(date).compareTo(format.format(date1));
-	        if(hash.equals(database_hash) && database_hash!=null && Expiry>=0){
+	        int Expiry=format.format(date).compareTo(format.format(date1));		//check current data with expiry date of table.
+	        if(hash.equals(database_hash) && database_hash!=null && Expiry>=0){	//if hash code and expiry is right.
+	        	//then update his/her active coloumn to 1 so that they can sign in.
 	        	Query q1 = session.createQuery("update Login set active=1 where emailid=:code");
 	            q1.setParameter("code", e.getEmailid());
 	            int result = q1.executeUpdate();
@@ -95,6 +102,8 @@ public class confirm_mail_save extends HttpServlet {
         }   
         //response.sendRedirect(request.getContextPath() + "/index.jsp");
         session.close();
+        
+        //If above credential wrong.
         PrintWriter out=response.getWriter();
         out.println("Soory This URL is Expire");
 	

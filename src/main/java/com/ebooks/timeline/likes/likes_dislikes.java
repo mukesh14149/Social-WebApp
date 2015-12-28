@@ -1,3 +1,4 @@
+//Upgrade no. of likes or degrade no. of likes in table depend on user click. 
 package com.ebooks.timeline.likes;
 
 import java.io.IOException;
@@ -44,36 +45,38 @@ public class likes_dislikes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession sess=request.getSession();
-		String like=request.getParameter("like");
-		String unlike=request.getParameter("unlike");
+		String like=request.getParameter("like");		//for like button.
+		String unlike=request.getParameter("unlike");	//for unlike button.
 		String emailid=(String) sess.getAttribute("emailid");
+		
 		Configuration cfg=new Configuration();  
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory=cfg.buildSessionFactory();  
         Session session=factory.openSession();
         Transaction t=session.beginTransaction();
-        likes likes1=new likes();
-        if(like!=null){
-        	Query q1 = session.createQuery("update timeline set likes=likes + 1 where id=:code");
+        
+        likes likes1=new likes(); //likes table
+        if(like!=null){			//if like button press
+        	Query q1 = session.createQuery("update timeline set likes=likes + 1 where id=:code"); //update value by 1
             q1.setParameter("code", Integer.parseInt(like));
             q1.executeUpdate();
             System.out.println("uyoyoyooyyoy");
-            likes1.sethash(Integer.parseInt(like));
+            likes1.sethash(Integer.parseInt(like));	//save email and id of post who like this post.
             likes1.setEmailid(emailid);
             
         }
-        else{
+        else{	//if unlike is press
         	System.out.println("yyyyyyyyyyyyyyyy"+Integer.parseInt(unlike));
-        	Query q1 = session.createQuery("update timeline set likes=likes - 1 where id=:code");
+        	Query q1 = session.createQuery("update timeline set likes=likes - 1 where id=:code");	//degrade value of like
             q1.setParameter("code", Integer.parseInt(unlike));
             q1.executeUpdate();
             
-            Query q2 = session.createQuery("Delete from likes where hash=:hash");
+            Query q2 = session.createQuery("Delete from likes where hash=:hash");	//delete his/her email id and hash from table
             q2.setParameter("hash", Integer.parseInt(unlike));
             q2.executeUpdate();
             
         }
-        session.save(likes1);
+        session.save(likes1);	//save table
         session.close();
         response.sendRedirect(request.getContextPath()+"/Timeline.jsp");
 	}

@@ -1,3 +1,4 @@
+//Logic:- Send confirmation mail to a user who Signup.
 package com.ebooks.login.Normal;
 
 import java.io.IOException;
@@ -42,17 +43,18 @@ public class confirmation_mail_send extends HttpServlet {
 		
 
         HttpSession session=request.getSession();
+        
         String emailid=(String) session.getAttribute("emailid");
-		String hash = UUID.randomUUID().toString();
-		String expirydate=calculateExpirydate(EXPIRATION);
-		session.setAttribute("hash", hash);
-		session.setAttribute("expirydate", expirydate);
+		String hash = UUID.randomUUID().toString();			//Generate unique code
+		String expirydate=calculateExpirydate(EXPIRATION);	//Get expiry data by adding 24 hours with current signup time.
+		session.setAttribute("hash", hash);					//set unique code in session
+		session.setAttribute("expirydate", expirydate);		//set expiry date in session
 		try{
-			send_Email(emailid,hash);
+			send_Email(emailid,hash);						//Method to mail to user to confirmation.
 		}catch(Exception e){
 			
 		}
-		response.sendRedirect(request.getContextPath() + "/Login_info");
+		response.sendRedirect(request.getContextPath() + "/Login_info");	//Save user detail.
 	}
 
 	/**
@@ -64,6 +66,7 @@ public class confirmation_mail_send extends HttpServlet {
 		
 	
 	}
+	//Calculate expiry time and format it in data.
 	public String calculateExpirydate(int expiryTimeInMinutes){
 		DateFormat format=new SimpleDateFormat();
 		Calendar cal = Calendar.getInstance();
@@ -72,6 +75,8 @@ public class confirmation_mail_send extends HttpServlet {
         
         return format.format(cal.getTime());
 	}
+	
+	//Method to send confirmation mail to user given mailid.
 	public void send_Email(String emailid,String hash){
 		 
 	      

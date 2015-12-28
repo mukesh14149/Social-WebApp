@@ -1,5 +1,5 @@
 //Secure the amount for sign in facebook and google
-
+//Logic:- to save loginuser data came from different signup category.
 package com.ebooks.database.data;
 
 import java.io.IOException;
@@ -42,30 +42,38 @@ public class Login_info extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession hsession=request.getSession();
-		String Name=(String) hsession.getAttribute("Name");
+		
+		//Get name,emailid, password(if user come from signup page),hash(its a unique code i.e sent to signup user emailaddress to let him confirm),
+		//expirydate(For signup user to confirm that he/she must confirm his/her mail within 24hours of signup)
+		
+		String Name=(String) hsession.getAttribute("Name");			
 		String emailid=(String) hsession.getAttribute("emailid");
 		String password=(String) hsession.getAttribute("password");
 		String hash=(String) hsession.getAttribute("hash");
 		String expirydate=(String) hsession.getAttribute("expirydate");
 		
+		
+		//Setting to open sql and start session to save our data.
 		Configuration cfg=new Configuration();  
-        cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file  
-          
+        cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file    
         //creating seession factory object  
-        SessionFactory factory=cfg.buildSessionFactory();  
-          
+        SessionFactory factory=cfg.buildSessionFactory();    
         //creating session object  
-        Session session=factory.openSession();  
-          
+        Session session=factory.openSession();    
         //creating transaction object  
         Transaction t=session.beginTransaction();  
           
+        
+        //Table Login so object is Login type.
         Login datavalue = new Login();  
+        
+        //Save data
         datavalue.setEmailid(emailid);  
         datavalue.setName(Name);  
         datavalue.setAmount(0);
         datavalue.setPassword(password);
         if(expirydate==null){
+        	//Expirydata coloumn should not be null so we add randomly data if user is not come from signup.
         	expirydate="24/12/15 9:52 PM";
         }
         datavalue.setExpirydate(expirydate);
@@ -79,9 +87,9 @@ public class Login_info extends HttpServlet {
         
           
         System.out.println("successfully saved");  
-
         session.close();
 	
+        //if user come from signup he/she must get hashcode so we need to protect him to sign in until he/she confirm for that particular session.
         if(hash!=null){
         	hsession.setAttribute("confirm", "No");
         }	

@@ -59,22 +59,25 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<meta charset=\"utf-8\">\n");
       out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
+      out.write("    \n");
       out.write("    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->\n");
+      out.write("    \n");
+      out.write("    \n");
       out.write("    <meta name=\"description\" content=\"\">\n");
       out.write("    <meta name=\"author\" content=\"\">\n");
       out.write("    <link rel=\"icon\" href=\"../../favicon.ico\">\n");
       out.write("\n");
-      out.write("    <title>Signin Template for Bootstrap</title>\n");
+      out.write("    \n");
+      out.write("    <title>InsaneNerds</title>\n");
       out.write("\n");
+      out.write("   \t<!-- bootstrap css and Js -->\n");
       out.write("   \t<link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">\n");
-      out.write("\n");
-      out.write("\t<!-- jQuery library -->\n");
       out.write("\t<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>\n");
-      out.write("\n");
-      out.write("\t<!-- Latest compiled JavaScript -->\n");
       out.write("\t<script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"></script>\n");
-      out.write("\t <link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n");
+      out.write("\t<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n");
       out.write("\t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css\">\n");
+      out.write("\t\n");
+      out.write("\t\n");
       out.write("\t<style>\n");
       out.write("\t\t.btn-danger {  background-color: #DD4B39;}\n");
       out.write("\t\t.btn-info {  background-color:  #3B5998;}\n");
@@ -84,36 +87,42 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("<body>\n");
-      out.write("\n");
-      out.write("\n");
+      out.write("\t\n");
+      out.write("\t");
 
-	HttpSession sess=request.getSession();
-	String Name=(String) sess.getAttribute("Name");
-	String confirm=(String) sess.getAttribute("confirm");
-    
-
+		HttpSession sess=request.getSession();
+		String Name=(String) sess.getAttribute("Name");
+		String confirm=(String) sess.getAttribute("confirm");
+	    
+	
       out.write('\n');
+      out.write('	');
 if(Name==null || confirm!=null) { if(Name==null){
-      out.write('\n');
-      out.write('\n');
+      out.write("\n");
+      out.write("\t\n");
+      out.write("\t");
 }else {
       out.write("\n");
-      out.write("<h2>Hello ");
+      out.write("\t<h2>Hello ");
       out.print(Name );
       out.write(" you need to confirm your mail and sign in again to get access</h2>\n");
+      out.write("\t");
 }sess.invalidate(); 
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write(" \t<div class=\"col-sm-4 sidenav\">");
+      out.write("\t\n");
+      out.write("\t<!--left nav-bar  -->\n");
+      out.write(" \t<div class=\"col-sm-4 sidenav\">\n");
+      out.write(" \t\t\t");
  if(Name==null){
       out.write("<h2>Hello World!</h2>");
 } 
-      out.write("</div>\n");
+      out.write("\n");
+      out.write(" \t</div>\n");
       out.write(" \t\n");
+      out.write(" \t<!--Middle nav-bar  -->\n");
       out.write("\t<div class=\"w3-card-4 w3-light-grey col-sm-4\" style=\"height:35em; top:3em;\">\n");
       out.write("    \t<div class=\"container col-sm-12\" >\n");
-      out.write("    \t\n");
+      out.write("    \t\t<!--Sign in Form  -->\n");
       out.write("\t\t\t<form class=\"form-signin\" action=\"/InsaneNerds/Signin_normal\" method=\"post\">\n");
       out.write("        \t\t<h2 class=\"form-signin-heading\">Please sign in</h2>\n");
       out.write("        \t\t<label for=\"inputEmail\" class=\"sr-only\">Email address</label>\n");
@@ -124,7 +133,7 @@ if(Name==null || confirm!=null) { if(Name==null){
       out.write("     \t\t</form>\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
+      out.write("\t\t\t<!--Sign in with Social-sites  -->\n");
       out.write("\t\t\t<form class=\"form-signin\" action=\"/InsaneNerds/Login_Bridge\" method=\"get\">\n");
       out.write("\t\t\t\t<button type=\"submit\" name=\"Login\" class=\"btn btn-block btn-social btn-google btn-danger btn-lg btn-block \" value=\"Sign in with Google\">\n");
       out.write("\t\t\t            <span class=\"fa fa-google-plus\"></span> Sign in with Google\n");

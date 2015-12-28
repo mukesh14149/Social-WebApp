@@ -1,5 +1,6 @@
 package com.ebooks.timeline.database;
 
+//timeline table with their defined coloumns
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

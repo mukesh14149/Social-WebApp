@@ -1,3 +1,4 @@
+//Logic:- Get post from table to show them in timeline.
 package com.ebooks.timeline.database;
 
 import java.awt.image.BufferedImage;
@@ -26,6 +27,8 @@ public class Get_timeline_post {
 	public   Get_timeline_post() throws IOException{
 		
 		System.out.println("hello");
+		
+		//Setting session to get access to table.
 		Configuration cfg=new Configuration();  
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory=cfg.buildSessionFactory();  
@@ -33,7 +36,7 @@ public class Get_timeline_post {
         Transaction t=session.beginTransaction();
         
         
-		
+	
 		Query q = session.createQuery("from timeline");
 		Iterator it=q.iterate();
 		while(it.hasNext()){
@@ -41,9 +44,9 @@ public class Get_timeline_post {
 	        timeline timeline=(timeline)it.next();
 	        timeline.getEmailid();
 	        BufferedImage img = ImageIO.read(new ByteArrayInputStream(timeline.getImage()));
-	        post.put(timeline.getPost(), timeline.getImage());
-	        hashid.put(timeline.getPost(),timeline.getId());
-	        likes.put(timeline.getPost(),timeline.getLikes());
+	        post.put(timeline.getPost(), timeline.getImage());		//set post and image in hashmap
+	        hashid.put(timeline.getPost(),timeline.getId());		//set post and its id no. in hashmap
+	        likes.put(timeline.getPost(),timeline.getLikes());		//set post and no. of likes in hashmap.
 	        System.out.println(img+"jelll");
 		}
 		

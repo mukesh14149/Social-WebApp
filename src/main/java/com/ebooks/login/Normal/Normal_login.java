@@ -1,4 +1,4 @@
-
+//Logic:- Saving Signup detail in session to further use.
 package com.ebooks.login.Normal;
 
 import java.io.IOException;
@@ -40,6 +40,8 @@ public class Normal_login extends HttpServlet {
 		session.setAttribute("emailid", request.getParameter("emailid"));
 		session.setAttribute("Name", request.getParameter("Name"));
 		session.setAttribute("password", request.getParameter("password"));
+		
+		//let him/her to confirm his/her mail.
 		response.sendRedirect(request.getContextPath() + "/confirmation_mail_send");
 		
 

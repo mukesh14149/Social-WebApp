@@ -1,3 +1,4 @@
+//Logic:- Save posts or file which is posted by a user.
 package com.ebooks.timeline.database;
 
 import java.io.File;
@@ -58,20 +59,24 @@ public class Store_Timeline_Data extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//Setting session to get access to table.
 		Configuration cfg=new Configuration();  
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory=cfg.buildSessionFactory();  
         Session session=factory.openSession();
         Transaction t=session.beginTransaction();
         
+        //Get emailid to save post with emailid.
         HttpSession sess=request.getSession();
         String emailid=(String)sess.getAttribute("emailid");
+        //logic to save image in byte format so get image with inputstream and convert it to byte format.
         InputStream inputStream = null;
         String name;
         String value=null;
         FileItemFactory fac = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(fac);
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);		//multipart class use for getting file.
         if (isMultipart)
         {
             try 
@@ -81,8 +86,8 @@ public class Store_Timeline_Data extends HttpServlet {
                 while (iterator.hasNext()) 
                 {
                     FileItem item = (FileItem) iterator.next();
-
-                    if (item.isFormField()) //your code for getting form fields
+                    //form come with two value with some fields or come with file.
+                    if (item.isFormField()) // code for getting form fields
                     {
                         name = item.getFieldName();
                         value = item.getString();
@@ -91,7 +96,7 @@ public class Store_Timeline_Data extends HttpServlet {
 
                     if (!item.isFormField()) 
                     {
-                       //your code for getting multipart 
+                       // code for getting multipart 
                     	
                     	
                     	 inputStream = item.getInputStream();
@@ -107,10 +112,10 @@ public class Store_Timeline_Data extends HttpServlet {
         
         System.out.println(emailid+" "+value+"yoy");
     	
-        byte[] bytes = IOUtils.toByteArray(inputStream);
+        byte[] bytes = IOUtils.toByteArray(inputStream);		//convert to byteStream.
        
         
-        
+        //Save to timeline table
         timeline timeline=new timeline();
         timeline.setEmailid(emailid);
         timeline.setPost(value);

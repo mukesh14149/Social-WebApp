@@ -93,8 +93,7 @@ public final class Timeline_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <meta name=\"author\" content=\"\">\n");
       out.write("    <link rel=\"icon\" href=\"../../favicon.ico\">\n");
       out.write("\n");
-      out.write("    <title>Signin Template for Bootstrap</title>\n");
-      out.write("\n");
+      out.write("<title>InsaneNerds</title>\n");
       out.write("   \t<link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">\n");
       out.write("\n");
       out.write("\t<!-- jQuery library -->\n");

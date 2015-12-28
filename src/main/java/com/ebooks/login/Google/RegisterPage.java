@@ -1,3 +1,4 @@
+//Logic:- Request to google and ask permission for a user then sign in with google, set session for email id and name and send it to login_info for save the info.
 package com.ebooks.login.Google;
 
 import java.io.BufferedReader;
@@ -28,10 +29,11 @@ import com.google.gson.JsonParser;
  */
 @WebServlet("/RegisterPage")
 public class RegisterPage extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
+	 private static final long serialVersionUID = 1L;
+	 
+	 //client id and client Secret
 	 private static final String CLIENT_ID = "253725670211-pkmtjrnt24d38jsj903i3kgapas93eqo.apps.googleusercontent.com";
-	   private static final String CLIENT_SECRET = "aAMY2xPQ2nGrJgDSq27VBH8M"; 
+	 private static final String CLIENT_SECRET = "aAMY2xPQ2nGrJgDSq27VBH8M"; 
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,15 +49,13 @@ public class RegisterPage extends HttpServlet {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		HttpSession session=request.getSession();
 		
-		out.print("<p>hello</p>");
-		
-		out.print("<a href=\"https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/InsaneNerds/RegisterPage\">Logout</a>");
-				
+		//Create session.
+		HttpSession session=request.getSession();				
 		try 
 		{
+			//Google auth redirect url gives one code, use this code to get accesscode and then fetch user data.
+			
 			String code = request.getParameter("code");
 			String urlParameters = "code=" + code
 					+ "&client_id=" + CLIENT_ID
@@ -95,6 +95,8 @@ public class RegisterPage extends HttpServlet {
 			GooglePojo data = new Gson().fromJson(outputString, GooglePojo.class);
 			System.out.println(data.getEmail());
 			System.out.println(data.getName());
+			
+			//save emailid and name in a session.
 			session.setAttribute("emailid", data.getEmail());
 			session.setAttribute("Name", data.getName());
 			writer.close();
@@ -110,11 +112,10 @@ public class RegisterPage extends HttpServlet {
 			System.out.println(e);
 		} catch (IOException e) 
 		{
-			//for denied access
-			//RequestDispatcher RequetsDispatcherObj =request.getRequestDispatcher("Sign.html");
-			//RequetsDispatcherObj.forward(request, response);
 			System.out.println(e);
 		}
+		
+		//Send to login_info to save resource.
 		response.sendRedirect(request.getContextPath() + "/Login_info");
 
 	}

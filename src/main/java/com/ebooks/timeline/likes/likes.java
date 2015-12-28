@@ -1,5 +1,5 @@
 package com.ebooks.timeline.likes;
-
+//Table for likes
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

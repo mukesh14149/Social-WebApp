@@ -1,3 +1,4 @@
+//Logic:- Setting getter and setter to get and set email and other data.
 package com.ebooks.login.Google;
 
 public class GooglePojo {
