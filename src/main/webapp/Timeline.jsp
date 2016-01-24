@@ -59,27 +59,28 @@ try{
 	<body>
 		<!-- Top Header starts -->
 		<div class="w3-card-4 " style="width:100%">
-			<nav class="navbar navbar-inverse ">
-				<div class="container-fluid">
-					<div class="navbar-header ">
-				    	<a class="navbar-brand" href="#">InsaneNerds</a>
+			    <nav class="navbar navbar-inverse ">
+			   	 <div class="container-fluid">
+			   		 <div class="navbar-header ">
+			    			<a class="navbar-brand" href="#">InsaneNerds</a>
 					</div>
-				</div>
+				<div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="https://github.com/InsaneNerds/InsaneNerds">Contribute</a></li>
 					<li><a href="http://www.mukeshgupta.me/">Contact us</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<% if(Name==null){%>
+			      <ul class="nav navbar-nav navbar-right">
+				<% if(Name==null){%>
 					<li><a href="http://localhost:8080/InsaneNerds/Site_login.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<li><a href="http://localhost:8080/InsaneNerds/index.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> 
 				     <%}else{ %>
 				    <li><a href="#"><span class="glyphicon glyphicon-user"></span><%=Name%></a></li>
-					<li><a href="http://localhost:8080/InsaneNerds/Logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				    <li><a href="http://localhost:8080/InsaneNerds/Logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				    	 <%} %> 
-				</ul>    
+			      </ul>
+			    
 			</nav>
 		</div>
 		<!-- Top Header end -->
